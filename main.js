@@ -25,7 +25,7 @@ function showErrorMessage () {
 
     var errorElement = document.createElement('p');
 
-    var errorMessage = document.createTextNode('Unexistent user!');
+    var errorMessage = document.createTextNode('Nonexistent user!');
     errorElement.appendChild(errorMessage);
     
     errorElement.style.color = "#ff0000";
