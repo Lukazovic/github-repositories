@@ -25,7 +25,7 @@ function showErrorMessage () {
 
     var errorElement = document.createElement('p');
 
-    var errorMessage = document.createTextNode('Nonexistent user!');
+    var errorMessage = document.createTextNode('Unexistent user!');
     errorElement.appendChild(errorMessage);
     
     errorElement.style.color = "#ff0000";
@@ -33,16 +33,29 @@ function showErrorMessage () {
     listElement.appendChild(errorElement);
 }
 
+function showSearchingMessage () {
+    listElement.innerHTML = '';
+
+    var searchingElement = document.createElement('p');
+
+    var searchingMessage = document.createTextNode('Searching user...');
+    searchingElement.appendChild(searchingMessage);
+
+    listElement.appendChild(searchingElement);
+}
+
 function seachGithubUser() {
+    showSearchingMessage();
+
     var nickname = inputElement.value;
 
-    axios.get('https://api.github.com/users/' + nickname + '/repos')
+    axios.get('https://api.github.com/users/' + nickname + '/repos', {function() {
+    }})
         .then(function (response) {
             addRespositoriesToScreen(response.data);
         })
         .catch(function (error) {
             showErrorMessage();
-            // console.warn(error);
         });
 }
 
